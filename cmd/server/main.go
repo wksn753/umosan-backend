@@ -52,7 +52,9 @@ func main() {
 	// 5. Start Server
 	port := os.Getenv("PORT")
 	if port == "" {
-		port = ":4000" // Fallback default port
+		port = ":4000" // Fallback default port for local development
+	} else if port[0] != ':' {
+		port = ":" + port // Ensure leading colon for Vercel's dynamic port numbers
 	}
 
 	log.Printf("Starting server on port %s...", port)
